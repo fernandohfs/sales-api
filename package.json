@@ -1,0 +1,19 @@
+{
+  "name": "sales-api",
+  "version": "1.0.0",
+  "description": "API REST desenvolvida como trabalho de conclusão do módulo de desenvolvimento web/rest em node, da Pós-Graduação.",
+  "main": "index.js",
+  "repository": "https://github.com/fernandohfs/sales-api.git",
+  "author": "Fernando Soares / Gabriel Borges",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^18.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "esm": "^3.2.25"
+  }
+}
