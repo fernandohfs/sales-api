@@ -1,25 +1,33 @@
 import Hapi from "@hapi/hapi";
 
 class Server {
-  async init() {
-    const server = Hapi.server({
+  constructor() {
+    this.server = Hapi.server({
       port: 3333,
       host: "localhost"
     });
-
-    await server.initialize();
-
-    return server;
   }
 
   async start() {
-    const server = await this.init();
+    const server = this.server;
 
+    await server.initialize();
     await server.start();
-
+    await this._plugins();
+    
     console.log(`\n\nServer running on ${server.info.uri}`);
-
     return server;
+  }
+
+  async _plugins() {
+    await this.server.register([
+      {
+        plugin: require('hapi-router'),
+        options: {
+          routes:  'src/api/**/**.routes.js'
+        }
+      }
+    ]);
   }
 }
 
