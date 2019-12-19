@@ -3,7 +3,7 @@ class CategoriesController {
         return 'list';
     }
 
-    details(req, h) {
+    detail(req, h) {
         return 'details';
     }
 
