@@ -132,6 +132,11 @@
     "@hapi/hoek" "8.x.x"
     "@hapi/joi" "16.x.x"
 
+"@hapi/hoek@8.3.1":
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-8.3.1.tgz#227d29efdb158e4a64590224add90c820f94d20e"
+  integrity sha512-75ocgnI7HG/I01iGA3/rs0y6PXydUA/kxhFZM0HoT8NLSTnt/J8Gq03iKl4a4B/2A3iMG0ctXtxr5Hg9SGr1gw==
+
 "@hapi/hoek@8.x.x", "@hapi/hoek@^8.2.4", "@hapi/hoek@^8.3.0", "@hapi/hoek@^8.3.1":
   version "8.5.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-8.5.0.tgz#2f9ce301c8898e1c3248b0a8564696b24d1a9a5a"
@@ -157,6 +162,17 @@
     "@hapi/bourne" "1.x.x"
     "@hapi/hoek" "8.x.x"
     "@hapi/topo" "3.x.x"
+
+"@hapi/joi@16.1.7":
+  version "16.1.7"
+  resolved "https://registry.yarnpkg.com/@hapi/joi/-/joi-16.1.7.tgz#360857223a87bb1f5f67691537964c1b4908ed93"
+  integrity sha512-anaIgnZhNooG3LJLrTFzgGALTiO97zRA1UkvQHm9KxxoSiIzCozB3RCNCpDnfhTJD72QlrHA8nwGmNgpFFCIeg==
+  dependencies:
+    "@hapi/address" "^2.1.2"
+    "@hapi/formula" "^1.2.0"
+    "@hapi/hoek" "^8.2.4"
+    "@hapi/pinpoint" "^1.0.2"
+    "@hapi/topo" "^3.1.3"
 
 "@hapi/joi@16.x.x", "@hapi/joi@^16.1.8":
   version "16.1.8"
@@ -760,6 +776,18 @@ glob-parent@~5.1.0:
   dependencies:
     is-glob "^4.0.1"
 
+glob@7.1.4:
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.4.tgz#aa608a2f6c577ad357e1ae5a5c26d9a8d1969255"
+  integrity sha512-hkLPepehmnKk41pUGm3sYxoFs/umurYfYJCerbXEyFIWcAzvpipAgVkBqqT9RBKMGjnq6kMuyYwha6csxbiM1A==
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.4"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
+
 glob@^5.0.3:
   version "5.0.15"
   resolved "https://registry.yarnpkg.com/glob/-/glob-5.0.15.tgz#1bc936b9e02f4a603fcc222ecf7633d30b8b93b1"
@@ -819,6 +847,15 @@ hapi-router@^5.0.0:
   dependencies:
     cast-array "^1.0.0"
     glob "^5.0.3"
+
+hapi-sequelizejs@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/hapi-sequelizejs/-/hapi-sequelizejs-3.1.0.tgz#e62c750247c0ed40b230545d5e0a8219b7b283d8"
+  integrity sha512-zuLC4upsaA16NdBL7BFMYSjVLpCqi99K/8cUxSEcYEiKt0NNfPitD7We9isHq/CcmwQXBMdziSCRl1i47idbow==
+  dependencies:
+    "@hapi/hoek" "8.3.1"
+    "@hapi/joi" "16.1.7"
+    glob "7.1.4"
 
 has-flag@^3.0.0:
   version "3.0.0"

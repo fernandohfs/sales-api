@@ -1,22 +1,33 @@
+import { CREATED, NO_CONTENT } from 'http-status';
+import CategoriesDao from './categories.dao';
+
 class CategoriesController {
-    list(req, h) {
-        return 'list';
+    async list(req, h) {
+        return CategoriesDao.findAll();
     }
 
-    detail(req, h) {
-        return 'details';
+    async detail(req, h) {
+        const { id } = req.params;
+        return CategoriesDao.findById(id);
     }
 
-    create(req, h) {
-        return 'create';
+    async create(req, h) {
+        const { payload } = req;
+        const category = await CategoriesDao.create(payload);
+
+        return h.response(category).code(CREATED);
     }
 
-    update(req, h) {
-        return 'update';
+    async update(req, h) {
+        const { params: { id }, payload } = req;
+        return CategoriesDao.update(id, payload);
     }
 
-    delete(req, h) {
-        return 'delete';
+    async delete(req, h) {
+        const { id } = req.params;
+        await CategoriesDao.delete(id);
+
+        return h.response().code(NO_CONTENT);
     }
 }
 

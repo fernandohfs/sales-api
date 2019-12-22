@@ -1,4 +1,5 @@
 import Hapi from "@hapi/hapi";
+import Database from "./database.config";
 
 class Server {
   constructor() {
@@ -21,6 +22,18 @@ class Server {
 
   async _plugins() {
     await this.server.register([
+      {
+        plugin: require('hapi-sequelizejs'),
+        options: [
+          {
+            name: "sales",
+            models: [
+              './src/api/**/**.models.js',
+            ],
+            sequelize: await Database.getConn(),
+          }
+        ]
+      },
       {
         plugin: require('hapi-router'),
         options: {
