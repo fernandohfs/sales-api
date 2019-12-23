@@ -44,6 +44,14 @@ class ProductsControllers {
 
     return h.response(products);
   }
+
+  async detail(req, h) {
+    const { id, categoryId } = req.params;
+
+    const product = await ProductsDao.detail(id, categoryId);
+
+    return h.response(product);
+  }
 }
 
 export default new ProductsControllers();

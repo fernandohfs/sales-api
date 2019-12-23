@@ -11,3 +11,8 @@ export const payload = Joi.object({
   quantity: Joi.number().required(),
   price: Joi.number().required(),
 });
+
+export const detail = Joi.object({
+  id: Joi.number().required(),
+  categoryId: Joi.number().required(),
+});
