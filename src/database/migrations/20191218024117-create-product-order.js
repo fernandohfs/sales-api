@@ -1,7 +1,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('product_order', {
-      productId: {
+      product_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         references: {
@@ -9,7 +9,7 @@ module.exports = {
           key: 'id',
         },
       },
-      orderId: {
+      order_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         references: {

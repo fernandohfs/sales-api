@@ -12,17 +12,25 @@ module.exports = {
         defaultValue: 0,
         allowNull: false,
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
           key: 'id',
         },
       },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
     });
   },
 
   down: queryInterface => {
-    return queryInterface.dropTale('orders');
+    return queryInterface.dropTable('orders');
   },
 };

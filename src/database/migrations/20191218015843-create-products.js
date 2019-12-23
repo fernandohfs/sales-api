@@ -21,12 +21,20 @@ module.exports = {
         defaultValue: 0,
         allowNull: false,
       },
-      categoryId: {
+      category_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'categories',
           key: 'id',
         },
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
     });
   },
