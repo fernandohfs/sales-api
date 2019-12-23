@@ -5,6 +5,17 @@ class ProductsDao {
   constructor() {
     this.model = instances.getModel('Product');
     this.categoryModel = instances.getModel('Category');
+
+    this.props = {
+      include: [
+        {
+          model: this.categoryModel,
+          as: 'category',
+          attributes: { exclude: ['createdAt', 'updatedAt'] },
+        },
+      ],
+      attributes: { exclude: ['category_id', 'createdAt', 'updatedAt'] },
+    };
   }
 
   create(data, categoryId) {
@@ -14,21 +25,14 @@ class ProductsDao {
   list(where) {
     return this.model.findAll({
       where,
-      attributes: ['id', 'description', 'quantity', 'price'],
+      ...this.props,
     });
   }
 
   async detail(id, categoryId) {
     const product = await this.model.findOne({
       where: { id, category_id: categoryId },
-      include: [
-        {
-          model: this.categoryModel,
-          as: 'category',
-          attributes: { exclude: ['createdAt', 'updatedAt'] },
-        },
-      ],
-      attributes: { exclude: ['category_id', 'createdAt', 'updatedAt'] },
+      ...this.props,
     });
 
     if (!product) {
