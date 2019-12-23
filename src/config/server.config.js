@@ -1,13 +1,15 @@
 import Hapi from '@hapi/hapi';
 import HapiSequelize from 'hapi-sequelizejs';
 import HapiRouter from 'hapi-router';
+
 import Database from './database.config';
+import Env from './environment.config';
 
 class Server {
   constructor() {
     this.server = Hapi.server({
-      port: 3333,
-      host: 'localhost',
+      port: Env.PORT,
+      host: Env.HOST,
       debug: {
         request: ['error'],
       },
