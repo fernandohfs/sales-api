@@ -6,7 +6,7 @@ export default (sequelize, dataTypes) => {
   Product.init(
     {
       description: dataTypes.STRING,
-      quantity: dataTypes.DECIMAL,
+      quantity: dataTypes.INTEGER,
       price: dataTypes.DECIMAL,
     },
     { sequelize, modelName: 'Product', tableName: 'products' }
