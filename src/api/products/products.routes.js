@@ -13,4 +13,14 @@ export default [
       },
     },
   },
+  {
+    method: 'GET',
+    path: '/categories/{categoryId}/products',
+    handler: ProductsControllers.list,
+    config: {
+      validate: {
+        params: Schemas.params,
+      },
+    },
+  },
 ];

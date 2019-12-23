@@ -1,4 +1,5 @@
 import { CREATED } from 'http-status';
+import { Op } from 'sequelize';
 
 import ProductsDao from './products.dao';
 
@@ -20,6 +21,28 @@ class ProductsControllers {
         price,
       })
       .code(CREATED);
+  }
+
+  async list(req, h) {
+    const { categoryId } = req.params;
+    const { description } = req.query;
+
+    let where = {
+      category_id: categoryId,
+    };
+
+    if (description) {
+      where = {
+        ...where,
+        description: {
+          [Op.substring]: description,
+        },
+      };
+    }
+
+    const products = await ProductsDao.list(where);
+
+    return h.response(products);
   }
 }
 
