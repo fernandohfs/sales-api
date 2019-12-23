@@ -1,6 +1,6 @@
-import { Sequelize } from "sequelize";
+import { Sequelize } from 'sequelize';
 
-import dbMigrationConfig from "./database.migrations.config";
+import dbMigrationConfig from './database.migrations.config';
 
 class Database {
   constructor() {

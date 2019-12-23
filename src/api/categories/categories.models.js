@@ -1,12 +1,13 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model } from 'sequelize';
 
-export default (sequelize, DataTypes) => {
-    class Category extends Model {}
-    Category.init({
-        description: DataTypes.STRING,
-        createdAt: { field: 'created_at', type: DataTypes.DATE },
-        updatedAt: { field: 'updated_at', type: DataTypes.DATE }
-    }, { sequelize, modelName: 'Category' });
+export default (sequelize, dataTypes) => {
+  class Category extends Model {}
+  Category.init(
+    {
+      description: dataTypes.STRING,
+    },
+    { sequelize, modelName: 'Category' }
+  );
 
-    return Category;
-}
+  return Category;
+};
