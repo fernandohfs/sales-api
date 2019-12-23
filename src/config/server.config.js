@@ -8,6 +8,9 @@ class Server {
     this.server = Hapi.server({
       port: 3333,
       host: 'localhost',
+      debug: {
+        request: ['error'],
+      },
     });
   }
 
