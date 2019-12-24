@@ -1,6 +1,6 @@
 const {
   NODE_ENV = 'development',
-  HOST,
+  HOST = 'localhost',
   PORT = 3333,
   DB_HOST,
   DB_PORT,
