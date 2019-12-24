@@ -46,4 +46,14 @@ export default [
       },
     },
   },
+  {
+    method: 'DELETE',
+    path: `${basePath}/{id}`,
+    handler: ProductsControllers.destroy,
+    config: {
+      validate: {
+        params: Schemas.detail,
+      },
+    },
+  },
 ];

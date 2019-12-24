@@ -1,4 +1,4 @@
-import { CREATED } from 'http-status';
+import { CREATED, NO_CONTENT } from 'http-status';
 import { Op } from 'sequelize';
 
 import ProductsDao from './products.dao';
@@ -66,6 +66,14 @@ class ProductsControllers {
     );
 
     return h.response({ id, description, quantity, price, category });
+  }
+
+  async destroy(req, h) {
+    const { id, categoryId } = req.params;
+
+    await ProductsDao.destroy(id, categoryId);
+
+    return h.response().code(NO_CONTENT);
   }
 }
 

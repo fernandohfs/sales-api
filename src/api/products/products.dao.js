@@ -47,6 +47,12 @@ class ProductsDao {
 
     return product.update(data);
   }
+
+  async destroy(id, categoryId) {
+    const product = await this.detail(id, categoryId);
+
+    return product.destroy();
+  }
 }
 
 export default new ProductsDao();
