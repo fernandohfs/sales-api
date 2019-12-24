@@ -41,6 +41,12 @@ class ProductsDao {
 
     return product;
   }
+
+  async update(data, id, categoryId) {
+    const product = await this.detail(id, categoryId);
+
+    return product.update(data);
+  }
 }
 
 export default new ProductsDao();

@@ -52,6 +52,21 @@ class ProductsControllers {
 
     return h.response(product);
   }
+
+  async update(req, h) {
+    const {
+      params: { id, categoryId },
+      payload,
+    } = req;
+
+    const { description, quantity, price, category } = await ProductsDao.update(
+      payload,
+      id,
+      categoryId
+    );
+
+    return h.response({ id, description, quantity, price, category });
+  }
 }
 
 export default new ProductsControllers();

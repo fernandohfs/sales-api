@@ -35,4 +35,15 @@ export default [
       },
     },
   },
+  {
+    method: 'PUT',
+    path: `${basePath}/{id}`,
+    handler: ProductsControllers.update,
+    config: {
+      validate: {
+        params: Schemas.detail,
+        payload: Schemas.update,
+      },
+    },
+  },
 ];
