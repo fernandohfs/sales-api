@@ -6,6 +6,7 @@ Foi realizada como trabalho de conclusão do módulo de Desenvolvimento Web/Rest
 ## Conteúdo
 
 - [Instalação](#instalação)
+- [Banco de Dados](#banco-de-dados)
 - [Modo de uso](#modo-de-uso)
 
 ## Instalação
@@ -32,9 +33,19 @@ $ yarn
 
 Crie um arquivo na pasta raiz do projeto chamado `.env`, copie os dados de exemplo contidos no arquivo `.env.example` e preencha com as informações corretas, como, por exemplo, nome, host, username do banco de dados, etc.
 
+## Banco de Dados
+
+### Migrations
+
+Após instalar as dependências e atualizar as variáveis de ambiente com os dados de banco de dados corretos, rode as `migrations` executando o comando abaixo:
+
+```
+$ yarn sequelize db:migrate
+```
+
 ## Modo de uso
 
-Após seguir os passos de [instalação](#instalação), execute o projeto em ambiente de desenvolvimento usando o comando abaixo na pasta raiz do projeto:
+Após seguir os passos de [instalação](#instalação) e [banco de dados](#banco-de-dados), execute o projeto em ambiente de desenvolvimento usando o comando abaixo na pasta raiz do projeto:
 
 ```
 $ yarn dev
