@@ -5,9 +5,8 @@ Foi realizada como trabalho de conclusão do módulo de Desenvolvimento Web/Rest
 
 ## Conteúdo
 
-- Instalação
-- Características
-- Modo de uso
+- [Instalação](#instalação)
+- [Modo de uso](#modo-de-uso)
 
 ## Instalação
 
@@ -35,7 +34,7 @@ Crie um arquivo na pasta raiz do projeto chamado `.env`, copie os dados de exemp
 
 ## Modo de uso
 
-Após seguir os passos de instalação, execute o projeto em ambiente de desenvolvimento usando o comando abaixo na pasta raiz do projeto:
+Após seguir os passos de [instalação](#instalação), execute o projeto em ambiente de desenvolvimento usando o comando abaixo na pasta raiz do projeto:
 
 ```
 $ yarn dev
