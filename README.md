@@ -6,7 +6,7 @@ Foi realizada como trabalho de conclusão do módulo de Desenvolvimento Web/Rest
 ## Conteúdo
 
 - [Instalação](#instalação)
-- [Documentação](#documentacao)
+- [Documentação](#documentação)
 - [Banco de Dados](#banco-de-dados)
 - [Modo de uso](#modo-de-uso)
 
