@@ -6,6 +6,7 @@ Foi realizada como trabalho de conclusão do módulo de Desenvolvimento Web/Rest
 ## Conteúdo
 
 - [Instalação](#instalação)
+- [Documentação](#documentacao)
 - [Banco de Dados](#banco-de-dados)
 - [Modo de uso](#modo-de-uso)
 
@@ -32,6 +33,10 @@ $ yarn
 ### Variáveis de ambiente
 
 Crie um arquivo na pasta raiz do projeto chamado `.env`, copie os dados de exemplo contidos no arquivo `.env.example` e preencha com as informações corretas, como, por exemplo, nome, host, username do banco de dados, etc.
+
+## Documentação 
+
+Para saber sobre os recursos e rotas disponiveis é quais parâmetros e dados passar, você pode olhar na documentação da API, é só ir no endereço [http://localhost:3333/documentation](http://localhost:3333/documentation)
 
 ## Banco de Dados
 
