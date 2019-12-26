@@ -41,7 +41,7 @@ class Server {
         plugin: HapiSwagger,
         options: {
           info: {
-            title: 'API Sales Documentação',
+            title: 'API Sales Documentation',
             version: Env.VERSION,
           }
         }
