@@ -2,6 +2,11 @@ import Hapi from '@hapi/hapi';
 import HapiSequelize from 'hapi-sequelizejs';
 import HapiRouter from 'hapi-router';
 
+//Swagger
+import Inert from '@hapi/inert';
+import Vision from '@hapi/vision';
+import HapiSwagger from 'hapi-swagger';
+
 import Database from './database.config';
 import Env from './environment.config';
 
@@ -19,9 +24,9 @@ class Server {
   async start() {
     const { server } = this;
 
+    await this._plugins();
     await server.initialize();
     await server.start();
-    await this._plugins();
 
     console.log(`\n\nServer running on ${server.info.uri}`);
     return server;
@@ -29,6 +34,18 @@ class Server {
 
   async _plugins() {
     await this.server.register([
+      //Swagger
+      Inert,
+      Vision,
+      {
+        plugin: HapiSwagger,
+        options: {
+          info: {
+            title: 'API Sales Documentação',
+            version: Env.VERSION,
+          }
+        }
+      },
       {
         plugin: HapiSequelize,
         options: [
@@ -44,7 +61,7 @@ class Server {
         options: {
           routes: 'src/api/**/**.routes.js',
         },
-      },
+      }
     ]);
   }
 }

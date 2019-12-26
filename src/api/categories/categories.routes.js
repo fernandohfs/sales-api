@@ -7,7 +7,7 @@ export default [
   {
     method: 'GET',
     path: basePath,
-    handler: CategoriesController.list,
+    handler: CategoriesController.list
   },
   {
     method: 'GET',

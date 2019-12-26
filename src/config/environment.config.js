@@ -1,4 +1,5 @@
 const {
+  VERSION = '1.0.0',
   NODE_ENV = 'development',
   HOST = 'localhost',
   PORT = 3333,
@@ -11,6 +12,7 @@ const {
 } = process.env;
 
 module.exports = {
+  VERSION,
   ENV: NODE_ENV,
   HOST,
   PORT,
