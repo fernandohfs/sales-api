@@ -9,6 +9,7 @@ const {
   DB_USERNAME,
   DB_PASSWORD,
   DB_DIALECT,
+  DEBUG
 } = process.env;
 
 module.exports = {
@@ -22,4 +23,5 @@ module.exports = {
   DB_USERNAME,
   DB_PASSWORD,
   DB_DIALECT,
+  DEBUG
 };

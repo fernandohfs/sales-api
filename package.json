@@ -8,13 +8,16 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "dev:debug": "nodemon --inspect src/index.js"
+    "dev:debug": "nodemon --inspect src/index.js",
+    "test": "node -r esm ./node_modules/.bin/lab -m 1000 -v"
   },
   "dependencies": {
     "@hapi/boom": "^8.0.1",
+    "@hapi/code": "^7.0.0",
     "@hapi/hapi": "^18.4.0",
     "@hapi/inert": "^5.2.2",
     "@hapi/joi": "^16.1.8",
+    "@hapi/lab": "^22.0.1",
     "@hapi/vision": "^5.5.4",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
