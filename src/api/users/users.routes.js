@@ -21,9 +21,21 @@ export default [
     },
     {
         method: 'POST',
+        path: `${basePath}/login`,
+        handler: UsersController.login,
+        config: {
+            auth: false,
+            validate: {
+                payload: Schemas.login
+            }
+        }
+    },
+    {
+        method: 'POST',
         path: basePath,
         handler: UsersController.create,
         config: {
+            auth: false,
             validate: {
                 payload: Schemas.payload
             }
@@ -47,16 +59,6 @@ export default [
         config: {
             validate: {
                 params: Schemas.params
-            }
-        }
-    },
-    {
-        method: 'POST',
-        path: `${basePath}/login`,
-        handler: UsersController.login,
-        config: {
-            validate: {
-                payload: Schemas.login
             }
         }
     }

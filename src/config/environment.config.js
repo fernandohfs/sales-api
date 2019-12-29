@@ -9,7 +9,9 @@ const {
   DB_USERNAME,
   DB_PASSWORD,
   DB_DIALECT,
-  DEBUG
+  DEBUG,
+  JWT_SECRET,
+  JWT_EXPIRES_IN
 } = process.env;
 
 module.exports = {
@@ -23,5 +25,7 @@ module.exports = {
   DB_USERNAME,
   DB_PASSWORD,
   DB_DIALECT,
-  DEBUG
+  DEBUG,
+  JWT_SECRET,
+  JWT_EXPIRES_IN
 };

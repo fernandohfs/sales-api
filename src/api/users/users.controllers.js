@@ -1,4 +1,5 @@
 import { CREATED, NO_CONTENT } from 'http-status';
+import { authenticate, getToken } from '../utils/auth.utils';
 import UsersDao from './users.dao';
 
 class UsersController {
@@ -6,9 +7,23 @@ class UsersController {
         return UsersDao.findAll();
     }
 
-    async detail(req, j) {
+    async detail(req, h) {
         const { id } = req.params;
         return UsersDao.findById(id);
+    }
+
+    async login({ payload }, h) {
+        const user = await authenticate(payload);
+        const token = getToken({
+            id: user.id,
+            email: user.email
+        });
+
+        return { user: {  
+                    id: user.id, 
+                    name: user.name,
+                    email: user.email 
+                }, token };
     }
 
     async create(req, h) {
@@ -28,10 +43,6 @@ class UsersController {
         await UsersDao.delete(id);
 
         return h.response().code(NO_CONTENT);
-    }
-
-    async login(req, h) {
-        return 'login';
     }
 }
 
