@@ -3,23 +3,31 @@ import UsersDao from './users.dao';
 
 class UsersController {
     async list(req, h) {
-        return 'list';
+        return UsersDao.findAll();
     }
 
     async detail(req, j) {
-        return 'detail';
+        const { id } = req.params;
+        return UsersDao.findById(id);
     }
 
     async create(req, h) {
-        return 'create';
+        const { payload } = req;
+        const user =  await UsersDao.create(payload);
+        
+        return h.response(user).code(CREATED);
     }
 
     async update(req, h) {
-        return 'update';
+        const { params: { id }, payload } = req;        
+        return UsersDao.update(id, payload);
     }
 
     async delete(req, h) {
-        return 'delete';
+        const { id } = req.params;
+        await UsersDao.delete(id);
+
+        return h.response().code(NO_CONTENT);
     }
 
     async login(req, h) {
