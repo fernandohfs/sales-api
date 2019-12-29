@@ -23,7 +23,7 @@ export default [
       notes: 'Returns a category item by the id passed in the path',
       tags: ['api', 'categoreis'],
       validate: {
-        params: Schemas.detail,
+        params: Schemas.params,
       },
     },
   },
@@ -59,7 +59,7 @@ export default [
         }
       },
       validate: {
-        params: Schemas.detail,
+        params: Schemas.params,
         payload: Schemas.payload,
       },
     },
@@ -73,7 +73,7 @@ export default [
       notes: 'Delete a category by the id passed in the path',
       tags: ['api', 'categoreis'],
       validate: {
-        params: Schemas.detail,
+        params: Schemas.params,
       },
     },
   },

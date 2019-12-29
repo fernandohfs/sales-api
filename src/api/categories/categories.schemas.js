@@ -1,6 +1,6 @@
 import * as Joi from '@hapi/joi';
 
-export const detail = Joi.object({
+export const params = Joi.object({
   id: Joi.number().required(),
 });
 
