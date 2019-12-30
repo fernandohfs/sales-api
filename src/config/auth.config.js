@@ -1,12 +1,28 @@
 import { instances } from 'hapi-sequelizejs';
 import HapiAuthJWT from 'hapi-auth-jwt2';
 import Env from './environment.config';
+import Boom from '@hapi/boom';
 
-const validate = async (decode) => {
-    const User = instances.getModel('user');
+const checkPermissionLevel = (app, user) => {
+    const { type: { id } } = user;
+
+    if ('authUserType' in app) {
+        if (app.authUserType.indexOf(id) === -1) {
+            throw Boom.forbidden('You do not have permission');
+        }
+    }
+
+    return user;
+}
+
+const validate = async (decode, req, h) => {
+    const { settings: { app } } = req.route;
+
+    const User = instances.getModel('User');
     const user = await User.findByPk(decode.id);
     const isValid = !!user;
-    const credentials = isValid ? user : null;
+
+    const credentials = isValid ? checkPermissionLevel(app, user) : null;
 
     return { isValid, credentials };
 }

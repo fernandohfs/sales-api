@@ -8,6 +8,11 @@ export default [
         method: 'GET',
         path: basePath,
         handler: UsersController.list,
+        config: {
+            app: {
+                authUserType: [2]
+            }
+        },
     },
     {
         method: 'GET',
