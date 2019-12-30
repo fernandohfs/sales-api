@@ -9,6 +9,13 @@ export const payload = Joi.object({
     cpf_cnpj: Joi.string().pattern(new RegExp('^\\d{11}$|^\\d{14}$')).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
+    type: [
+        Joi.number().min(1),
+        Joi.object({
+            id: Joi.number().min(1).required(),
+            description: Joi.string()
+        })
+    ]
 });
 
 export const login = Joi.object({

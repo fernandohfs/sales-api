@@ -7,7 +7,7 @@ export default [
     {
         method: 'GET',
         path: basePath,
-        handler: UsersController.list
+        handler: UsersController.list,
     },
     {
         method: 'GET',
