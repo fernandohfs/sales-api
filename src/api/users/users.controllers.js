@@ -1,47 +1,30 @@
 import { CREATED, NO_CONTENT } from 'http-status';
-import { authenticate, getToken } from '../utils/auth.utils';
-import UsersDao from './users.dao';
+import UsersBusiness from './users.business';
 
 class UsersController {
     async list(req, h) {
-        return UsersDao.findAll();
+        return UsersBusiness.findAll(req);
     }
 
     async detail(req, h) {
-        const { id } = req.params;
-        return UsersDao.findById(id);
+        return UsersBusiness.findById(req);
     }
 
-    async login({ payload }, h) {
-        const user = await authenticate(payload);
-        const token = getToken({
-            id: user.id,
-            email: user.email
-        });
-
-        return { user: {  
-                    id: user.id, 
-                    name: user.name,
-                    email: user.email 
-                }, token };
+    async login(req, h) {
+        return UsersBusiness.login(req);
     }
 
     async create(req, h) {
-        const { payload } = req;
-        const user =  await UsersDao.create(payload);
-        
+        const user = await UsersBusiness.create(req);        
         return h.response(user).code(CREATED);
     }
 
-    async update(req, h) {
-        const { params: { id }, payload } = req;        
-        return UsersDao.update(id, payload);
+    async update(req, h) {      
+        return UsersBusiness.update(req);
     }
 
     async delete(req, h) {
-        const { id } = req.params;
-        await UsersDao.delete(id);
-
+        await UsersBusiness.delete(req);
         return h.response().code(NO_CONTENT);
     }
 }

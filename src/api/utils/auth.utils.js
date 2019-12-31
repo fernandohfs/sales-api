@@ -20,3 +20,20 @@ export async function authenticate({ email, password }) {
 
     return user;
 }
+
+export function decodeToken(token) {
+    if (token) {
+        return JWT.verify(token, Env.JWT_SECRET);
+    }
+    return;
+}
+
+export async function getUserByToken(token) {
+    const decode = decodeToken(token);
+
+    if (decode) {
+        const model = instances.getModel('User');
+        return await getObjectOr404(model, { where: { id: decode.id }});
+    }
+    return;
+}
