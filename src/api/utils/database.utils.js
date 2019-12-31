@@ -28,16 +28,35 @@ class DatabaseUtils {
         let where = {};
     
         Object.keys(queryParams).map(filter => { 
-            if (filter === "fields") {
-                queryOptions["attributes"] = queryParams[filter].split(",");
-            } else if (filter.search("_contains") !== -1) {
+            if (filter === 'fields') {
+                queryOptions['attributes'] = queryParams[filter].split(",");
+            } else if (filter.search('_contains') !== -1) {
                 where = this._filterContains(where, filter, queryParams[filter]);
-            } else if (filter.search("_in")) {
+            } else if (filter.search('_in') !== -1) {
                 where = this._filterIn(where, filter, queryParams[filter]);
+            } else if (filter === 'sort') {
+                queryOptions['order'] = this._sort(queryParams[filter]);
             }
         });
     
         return { ...queryOptions, where };
+    }
+
+    _sort(value) {
+        let order = [];
+
+        value.split(',').map((field, index) => {
+            let typeOrder = 'ASC';
+
+            if (field.charAt(field.length - 1) === '-') {
+                typeOrder = 'DESC';
+                field = field.substr(0, field.length - 1)
+            }
+
+            order[index] = [field, typeOrder];
+        });
+
+        return order;
     }
     
     _filterIn(where, filter, value) {
