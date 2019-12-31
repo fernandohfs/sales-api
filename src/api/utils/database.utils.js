@@ -15,9 +15,12 @@ class DatabaseUtils {
     async findAll(model, options) {
         const { query } = options;
         const queryOptions = this._builderQueryOptions(query);
+        const paginate = this._paginate(query);
     
         try {
-            return await model.findAll(queryOptions);   
+            const records = await model.findAll({ ...queryOptions, ...paginate });
+
+            return { meta: { ...paginate, recordCount: records.length }, records };
         } catch (error) {
             throw Boom.badRequest(error.original.sqlMessage);
         }     
@@ -57,6 +60,16 @@ class DatabaseUtils {
         });
 
         return order;
+    }
+
+    _paginate(queryParams) {
+        let limit = parseInt(queryParams.limit) || 50;
+        let offset = parseInt(queryParams.offset) || 0;
+
+        limit = limit > 50 ? 50 : limit;
+        offset = offset > 50 ? 50 : offset;
+
+        return { offset, limit };
     }
     
     _filterIn(where, filter, value) {
