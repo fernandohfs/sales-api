@@ -1,7 +1,7 @@
 import OrdersController from './orders.controllers';
 import * as Schemas from './orders.schemas';
 
-const basePath = '/orders/{orderId}/orders';
+const basePath = '/orders';
 
 export default [
   {

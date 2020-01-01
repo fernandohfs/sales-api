@@ -28,7 +28,7 @@ class OrdersController {
 
   async destroy(req, h) {
     const { id } = req.params;
-    await OrdersDao.delete(id);
+    await OrdersDao.destroy(id);
 
     return h.response().code(NO_CONTENT);
   }
