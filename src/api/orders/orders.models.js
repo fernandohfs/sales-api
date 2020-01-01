@@ -12,7 +12,8 @@ export default (sequelize, dataTypes) => {
 
     Order.associate = models => {
       models.Order.belongsTo(models.User, {
-
+        as: 'user',
+        foreignKey: 'user_id',
       });
     };
   return Order;
