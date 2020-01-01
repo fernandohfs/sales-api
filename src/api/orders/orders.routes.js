@@ -11,7 +11,10 @@ export default [
     config: {
       description: 'Get Orders',
       notes: 'Retruns a list orders',
-      tags: ['api', 'orders']
+      tags: ['api', 'orders'],
+      validate: {
+        params: Schemas.params,
+      },
     },
   },
   {
