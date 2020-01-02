@@ -29,7 +29,10 @@ class Server {
     await server.initialize();
     await server.start();
 
-    console.log(`\n\nServer running on ${server.info.uri}`);
+    if (Env.DEBUG === 'true') {
+        console.log(`\n\nServer running on ${server.info.uri}`);
+    }
+    
     return server;
   }
 

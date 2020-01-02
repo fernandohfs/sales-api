@@ -29,6 +29,7 @@
     "http-status": "^1.4.2",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.0.2",
+    "prompt": "^1.0.0",
     "sequelize": "^5.21.3",
     "yarn": "^1.21.1"
   },

@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize';
 
 import dbMigrationConfig from './database.migrations.config';
+import Env from './environment.config';
 
 class Database {
   constructor() {
@@ -8,12 +9,14 @@ class Database {
   }
 
   async getConn() {
+    let dbConfig = dbMigrationConfig[Env.ENV];
+
     if (!this._sequelize) {
       this._sequelize = new Sequelize(
-        dbMigrationConfig.database,
-        dbMigrationConfig.username,
-        dbMigrationConfig.password,
-        dbMigrationConfig
+        dbConfig.database,
+        dbConfig.username,
+        dbConfig.password,
+        dbConfig
       );
     }
 

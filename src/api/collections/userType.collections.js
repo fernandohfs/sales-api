@@ -1,8 +1,8 @@
 class UserType {
     constructor() {
         const userTypes = [
-            {id: 1, decription: 'Cliente'},
-            {id: 2, decription: 'Operador'}
+            {id: 1, description: 'Cliente'},
+            {id: 2, description: 'Operador'}
         ];
 
         this.userTypes = new Map();
