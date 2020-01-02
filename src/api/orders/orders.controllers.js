@@ -12,10 +12,11 @@ class OrdersController {
   }
 
   async create(req, h) {
-    const { payload } = req;
-    const order = await OrdersDao.create(payload);
+    const { userId } = req.params;
 
-    return h.response(order).code(CREATED);
+    const { id } = await OrdersDao.create(userId);
+
+    return h.response(id).code(CREATED);
   }
 
   async update(req, h) {
