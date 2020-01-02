@@ -9,6 +9,9 @@ export default [
         path: basePath,
         handler: UsersController.list,
         config: {
+            description: 'Get Users',
+            notes: 'Returns a list users',
+            tags: ['api', 'users'],
             app: {
                 authUserType: [2]
             }
@@ -19,6 +22,9 @@ export default [
         path: `${basePath}/{id}`,
         handler: UsersController.detail,
         config: {
+            description: 'Get User',
+            notes: 'Returns a user item by the id passed in the path',
+            tags: ['api', 'users'],
             validate: {
                 params: Schemas.params,
             }
@@ -30,6 +36,14 @@ export default [
         handler: UsersController.login,
         config: {
             auth: false,
+            description: 'Post Login',
+            notes: 'Loin in API',
+            tags: ['api', 'users'],
+            plugins: {
+                'hapi-swagger': {
+                    payloadType: 'form'
+                }
+            },
             validate: {
                 payload: Schemas.login
             }
@@ -41,6 +55,14 @@ export default [
         handler: UsersController.create,
         config: {
             auth: false,
+            description: 'Post User',
+            notes: 'Create a user with data in request body',
+            tags: ['api', 'users'],
+            plugins: {
+                'hapi-swagger': {
+                    payloadType: 'form'
+                }
+            },
             validate: {
                 payload: Schemas.payload
             }
@@ -51,6 +73,14 @@ export default [
         path: `${basePath}/{id}`,
         handler: UsersController.update,
         config: {
+            description: 'Put User',
+            notes: 'Update a user with data in request body by the id passed in the path',
+            tags: ['api', 'users'],
+            plugins: {
+                'hapi-swagger': {
+                    payloadType: 'form'
+                }
+            },
             validate: {
                 params: Schemas.params,
                 payload: Schemas.payload
@@ -62,6 +92,9 @@ export default [
         path: `${basePath}/{id}`,
         handler: UsersController.delete,
         config: {
+            description: 'Put User',
+            notes: 'Delete a user by the id passed in the path',
+            tags: ['api', 'users'],
             validate: {
                 params: Schemas.params
             }
