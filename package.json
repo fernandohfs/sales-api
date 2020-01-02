@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "dev:debug": "nodemon --inspect src/index.js",
-    "test": "node -r esm ./node_modules/.bin/lab -m 1000 -v"
+    "test": "node -r esm ./node_modules/.bin/lab -m 1000 -v",
+    "levelup": "node src/config/levelup.config.js"
   },
   "dependencies": {
     "@hapi/boom": "^8.0.1",
