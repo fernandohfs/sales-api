@@ -17,7 +17,7 @@ export default [
         authUserType: [2],
       },
       validate: {
-        query: Schemas.query,
+        query: Schemas.queryList,
       },
     },
   },
@@ -31,6 +31,7 @@ export default [
       tags: ['api', 'users'],
       validate: {
         params: Schemas.params,
+        query: Schemas.queryDetail,
       },
     },
   },

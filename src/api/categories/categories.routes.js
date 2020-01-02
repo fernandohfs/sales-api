@@ -12,6 +12,9 @@ export default [
       description: 'Get Categories',
       notes: 'Retruns a list categories',
       tags: ['api', 'categories'],
+      validate: {
+        query: Schemas.queryList,
+      },
     },
   },
   {
@@ -24,6 +27,7 @@ export default [
       tags: ['api', 'categories'],
       validate: {
         params: Schemas.params,
+        query: Schemas.queryDetail
       },
     },
   },

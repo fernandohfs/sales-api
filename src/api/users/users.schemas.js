@@ -24,8 +24,12 @@ export const login = Joi.object({
     password: Joi.string().min(6).required(),
 });
 
-export const query = Joi.object(
+export const queryList = Joi.object(
     DocsUtils.builderQueryParams([
-        'name', 'cpf_cnpj', 'email', 'type'
+        'id', 'name', 'cpf_cnpj', 'email', 'type'
     ])
 );
+
+export const queryDetail = Joi.object({
+    fields: Joi.string().min(1)
+});
