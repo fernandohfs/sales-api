@@ -64,7 +64,15 @@ class Server {
           info: {
             title: 'API Sales Documentation',
             version: Env.VERSION,
-          }
+          },
+          securityDefinitions: {
+            'jwt': {
+              'type': 'apiKey',
+              'name': 'Authorization',
+              'in': 'header'
+            }
+          },
+          security: [{ 'jwt': [] }]
         }
       },
     ]);

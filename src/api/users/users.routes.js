@@ -41,7 +41,8 @@ export default [
             tags: ['api', 'users'],
             plugins: {
                 'hapi-swagger': {
-                    payloadType: 'form'
+                    payloadType: 'form',
+                    security: []
                 }
             },
             validate: {
@@ -60,7 +61,8 @@ export default [
             tags: ['api', 'users'],
             plugins: {
                 'hapi-swagger': {
-                    payloadType: 'form'
+                    payloadType: 'form',
+                    security: []
                 }
             },
             validate: {
