@@ -35,6 +35,11 @@ export default [
       description: 'Post Order',
       notes: 'Create a order with data in request body',
       tags: ['api', 'orders'],
+      plugins: {
+        'hapi-swagger': {
+          payloadType: 'form'
+        },
+      },
       validate: {
         payload: Schemas.payload,
       },
@@ -48,6 +53,11 @@ export default [
       description: 'Put Order',
       notes: 'Update a order with data in request body by the id passed in the path',
       tags: ['api', 'orders'],
+      plugins: {
+        'hapi-swagger': {
+          payloadType: 'form'
+        },
+      },
       validate: {
         params: Schemas.params,
         payload: Schemas.payload,
