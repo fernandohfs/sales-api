@@ -1,4 +1,5 @@
 import * as Joi from '@hapi/joi';
+import DocsUtils from '../utils/docs.utils';
 
 export const params = Joi.object({
     id: Joi.number().required()
@@ -22,3 +23,9 @@ export const login = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
 });
+
+export const query = Joi.object(
+    DocsUtils.builderQueryParams([
+        'name', 'cpf_cnpj', 'email', 'type'
+    ])
+);

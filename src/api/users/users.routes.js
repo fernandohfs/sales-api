@@ -14,6 +14,9 @@ export default [
             tags: ['api', 'users'],
             app: {
                 authUserType: [2]
+            },
+            validate: {
+                query: Schemas.query
             }
         },
     },
