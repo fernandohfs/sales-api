@@ -30,14 +30,14 @@ class Server {
     await server.start();
 
     if (Env.DEBUG === 'true') {
-        console.log(`\n\nServer running on ${server.info.uri}`);
+      console.log(`\n\nServer running on ${server.info.uri}`);
     }
-    
+
     return server;
   }
 
   async _plugins() {
-    const server = this.server;
+    const { server } = this;
 
     await server.register([
       {
@@ -54,10 +54,10 @@ class Server {
         plugin: HapiRouter,
         options: {
           routes: 'src/api/**/**.routes.js',
-        }
+        },
       },
       {
-        plugin: Auth
+        plugin: Auth,
       },
       Inert,
       Vision,
@@ -69,14 +69,15 @@ class Server {
             version: Env.VERSION,
           },
           securityDefinitions: {
-            'jwt': {
-              'type': 'apiKey',
-              'name': 'Authorization',
-              'in': 'header'
-            }
+            jwt: {
+              type: 'apiKey',
+              name: 'Authorization',
+              in: 'header',
+            },
           },
-          security: [{ 'jwt': [] }]
-        }
+          security: [{ jwt: [] }],
+          grouping: 'tags',
+        },
       },
     ]);
   }

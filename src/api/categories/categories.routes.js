@@ -11,8 +11,8 @@ export default [
     config: {
       description: 'Get Categories',
       notes: 'Retruns a list categories',
-      tags: ['api', 'categoreis']
-    }
+      tags: ['api', 'categories'],
+    },
   },
   {
     method: 'GET',
@@ -21,7 +21,7 @@ export default [
     config: {
       description: 'Get Category',
       notes: 'Returns a category item by the id passed in the path',
-      tags: ['api', 'categoreis'],
+      tags: ['api', 'categories'],
       validate: {
         params: Schemas.params,
       },
@@ -34,11 +34,11 @@ export default [
     config: {
       description: 'Post Category',
       notes: 'Create a category with data in request body',
-      tags: ['api', 'categoreis'],
+      tags: ['api', 'categories'],
       plugins: {
         'hapi-swagger': {
-            payloadType: 'form'
-        }
+          payloadType: 'form',
+        },
       },
       validate: {
         payload: Schemas.payload,
@@ -51,12 +51,13 @@ export default [
     handler: CategoriesController.update,
     config: {
       description: 'Put Category',
-      notes: 'Update a category with data in request body by the id passed in the path',
-      tags: ['api', 'categoreis'],
+      notes:
+        'Update a category with data in request body by the id passed in the path',
+      tags: ['api', 'categories'],
       plugins: {
         'hapi-swagger': {
-            payloadType: 'form'
-        }
+          payloadType: 'form',
+        },
       },
       validate: {
         params: Schemas.params,
@@ -71,7 +72,7 @@ export default [
     config: {
       description: 'Put Category',
       notes: 'Delete a category by the id passed in the path',
-      tags: ['api', 'categoreis'],
+      tags: ['api', 'categories'],
       validate: {
         params: Schemas.params,
       },
