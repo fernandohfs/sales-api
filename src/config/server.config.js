@@ -15,7 +15,6 @@ class Server {
   constructor() {
     this.server = Hapi.server({
       port: Env.PORT || 3000,
-      host: Env.HOST,
       debug: {
         request: ['error'],
       },
