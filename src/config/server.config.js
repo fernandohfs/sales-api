@@ -14,7 +14,7 @@ import Env from './environment.config';
 class Server {
   constructor() {
     this.server = Hapi.server({
-      port: Env.PORT,
+      port: Env.PORT || 3000,
       host: Env.HOST,
       debug: {
         request: ['error'],
