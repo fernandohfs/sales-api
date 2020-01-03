@@ -1,36 +1,30 @@
 import { instances } from 'hapi-sequelizejs';
-import Boom from '@hapi/boom';
+import DatabaseUtils from '../utils/database.utils';
 
 class CategoriesDao {
   constructor() {
     this.model = instances.getModel('Category');
   }
 
-  async findAll() {
-    return this.model.findAll();
+  async findAll(options) {
+    return DatabaseUtils.findAll(this.model, options);
   }
 
-  async findById(id) {
-    const category = await this.model.findByPk(id);
-
-    if (!category) {
-      throw Boom.notFound();
-    }
-
-    return category;
+  async findOne(options) {
+    return DatabaseUtils.findOne(this.model, options);
   }
 
   async create(data) {
-    return this.model.create(data);
+    return await DatabaseUtils.create(this.model, data);
   }
 
-  async update(id, data) {
-    const category = await this.findById(id);
-    return category.update(data);
+  async update(options, data) {
+    const category = await this.findOne(options);
+    return DatabaseUtils.update(category, data);
   }
 
-  async delete(id) {
-    const category = await this.findById(id);
+  async delete(options) {
+    const category = await this.findOne(options);
     return category.destroy();
   }
 }

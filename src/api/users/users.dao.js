@@ -1,5 +1,4 @@
 import { instances } from 'hapi-sequelizejs';
-import Boom from '@hapi/boom';
 import DatabaseUtils from '../utils/database.utils';
 
 class UsersDao {
@@ -11,27 +10,21 @@ class UsersDao {
         return DatabaseUtils.findAll(this.model, options);
     }
 
-    async findById(id) {
-        const user = await this.model.findByPk(id);
-
-        if (!user) {
-            throw Boom.notFound();
-        }
-
-        return user;
+    async findOne(options) {
+        return DatabaseUtils.findOne(this.model, options);
     }
 
     async create(data) {
-        return this.model.create(data);
+        return await DatabaseUtils.create(this.model, data);
     }
 
-    async update(id, data) {
-        const user = await this.findById(id);
-        return user.update(data);
+    async update(options, data) {
+        const user = await this.findOne(options);
+        return DatabaseUtils.update(user, data);
     }
 
-    async delete(id) {
-        const user = await this.findById(id);
+    async delete(options) {
+        const user = await this.findOne(options);
         return user.destroy();
     }
 }

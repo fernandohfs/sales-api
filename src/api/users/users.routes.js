@@ -72,6 +72,9 @@ export default [
       },
       validate: {
         payload: Schemas.payload,
+        failAction: function (request, h, err) {
+            return err;
+        }
       },
     },
   },

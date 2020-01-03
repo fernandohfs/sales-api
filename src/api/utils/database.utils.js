@@ -13,34 +13,72 @@ class DatabaseUtils {
     }
 
     async findAll(model, options) {
-        const { query } = options;
-        const queryOptions = this._builderQueryOptions(query);
+        const { params, query } = options;
+        const queryOptions = this._builderQueryOptions(params, query);
         const paginate = this._paginate(query);
     
         try {
             const records = await model.findAll({ ...queryOptions, ...paginate });
-
             return { meta: { ...paginate, recordCount: records.length }, records };
+    
         } catch (error) {
-            throw Boom.badRequest(error.original.sqlMessage);
+            throw Boom.badRequest(`${error.original.sqlMessage}, check spaces and name column!`);
         }     
     }
+
+    async findOne(model, options) {
+        const { params, query } = options;
+        const queryOptions = this._builderQueryOptions(params, query);
+        let object = null;
+
+        try {
+            object = await model.findOne({ ...queryOptions });
+        } catch (error) {
+            throw Boom.badRequest(`${error.original.sqlMessage}, check spaces and name column!`);
+        }     
+
+        if (!object) {
+            throw Boom.notFound();
+        }
+        
+        return object;
+    }
+
+    async create(model, data) {
+        try {
+            const object = await model.create(data);
+            return object;
+        } catch (error) {
+            this._customMensagemError(error);
+        }
+    }
+
+    async update(model, data) {
+        try {
+            const object = await model.update(data);
+            return object;
+        } catch (error) {
+            this._customMensagemError(error);
+        }
+    }
     
-    _builderQueryOptions(queryParams) {
+    _builderQueryOptions(params, query) {
         let queryOptions = {};
         let where = {};
-    
-        Object.keys(queryParams).map(filter => { 
+        
+        for (let filter in query) {
             if (filter === 'fields') {
-                queryOptions['attributes'] = queryParams[filter].split(",");
+                queryOptions['attributes'] = query[filter].split(",");
             } else if (filter.search('_contains') !== -1) {
-                where = this._filterContains(where, filter, queryParams[filter]);
+                where = this._filterContains(where, filter, query[filter]);
             } else if (filter.search('_in') !== -1) {
-                where = this._filterIn(where, filter, queryParams[filter]);
+                where = this._filterIn(where, filter, query[filter]);
             } else if (filter === 'sort') {
-                queryOptions['order'] = this._sort(queryParams[filter]);
+                queryOptions['order'] = this._sort(query[filter]);
             }
-        });
+        }
+        
+        where = { ...where, ...params };
     
         return { ...queryOptions, where };
     }
@@ -88,6 +126,19 @@ class DatabaseUtils {
     
     _getField(filter, name) {
         return filter.replace(name, '');
+    }
+
+    _customMensagemError(error) {
+        let msgError = '';
+            
+        error.errors.map(validation => {
+            if (validation.constructor.name === 'ValidationErrorItem') {
+                msgError += `${validation.message},`;
+            }
+            msgError = msgError.substr(0, (msgError.length - 1));
+        });
+
+        throw Boom.badRequest(msgError);
     }
 }
 

@@ -10,8 +10,10 @@ export function getToken(payload, options = {}) {
 }
 
 export async function authenticate({ email, password }) {
+    console.log(email, password);
     const model = instances.getModel('User');
     const user = await DatabaseUtils.getObjectOr404(model, { where: { email }});
+    console.log(user);
     const isValid = await Bcrypt.compare(password, user.password);
 
     if (!isValid) {

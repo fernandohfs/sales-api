@@ -8,13 +8,13 @@ class UsersBusiness {
         this.userTypeWithPermission = [2]; 
     }
 
-    async findAll({params, query}) {
-        return UsersDao.findAll({params, query});
+    async findAll({ params, query }) {
+        return UsersDao.findAll({ params, query });
     }
 
-    async findById({ params: { id }, headers}) {
-        await this._checkPermissionToHandlerOrViewOtherUser(id, headers);
-        return UsersDao.findById(id);
+    async findOne({ params, query, headers }) {
+        await this._checkPermissionToHandlerOrViewOtherUser(params.id, headers);
+        return UsersDao.findOne({ params, query });
     }
 
     async login({ payload }) {
@@ -36,16 +36,16 @@ class UsersBusiness {
         return UsersDao.create(payload);
     }
 
-    async update({ params: { id }, payload, headers }) {
-        await this._checkPermissionToHandlerOrViewOtherUser(id, headers);
+    async update({ params, query, payload, headers }) {
+        await this._checkPermissionToHandlerOrViewOtherUser(params.id, headers);
         await this._checkPermissionSetType(payload, headers);
 
-        return UsersDao.update(id, payload);
+        return UsersDao.update({ params, query }, payload);
     }
 
-    async delete({ params: { id }, headers}) {
-        await this._checkPermissionToHandlerOrViewOtherUser(id, headers);
-        return UsersDao.delete(id);
+    async delete({ params, query, headers}) {
+        await this._checkPermissionToHandlerOrViewOtherUser(params.id, headers);
+        return UsersDao.delete({ params, query });
     }
 
     async _checkPermissionSetType(payload, headers) {

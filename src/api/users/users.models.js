@@ -31,10 +31,15 @@ export default (sequelize, DataTypes) => {
         }
     }, { sequelize, modelName: 'User' });
 
-    User.addHook('beforeCreate', async (user) => {
-        const hash = await Bcrypt.hash(user.password, 10);
-        user.password = hash;
-    });
+    const getHask = async (user) => {
+        if (user.dataValues.password !== user._previousDataValues.password) {
+            const hash = await Bcrypt.hash(user.password, 10);
+            user.password = hash;;
+        }
+    };
+
+    User.addHook('beforeCreate', getHask);
+    User.addHook('beforeUpdate', getHask);
 
     return User;
 }

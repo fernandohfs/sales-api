@@ -4,6 +4,7 @@ const prompt = require('prompt');
 require = require('esm')(module);
 
 process.env.DEBUG = false;
+process.env.PORT++;
 
 const serverConfig = require('./server.config').default;
 

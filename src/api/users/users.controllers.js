@@ -7,7 +7,7 @@ class UsersController {
     }
 
     async detail(req, h) {
-        return UsersBusiness.findById(req);
+        return UsersBusiness.findOne(req);
     }
 
     async login(req, h) {

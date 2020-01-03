@@ -3,12 +3,13 @@ import CategoriesDao from './categories.dao';
 
 class CategoriesController {
   async list(req, h) {
-    return CategoriesDao.findAll();
+    const { params, query } = req;
+    return CategoriesDao.findAll({ params, query });
   }
 
   async detail(req, h) {
-    const { id } = req.params;
-    return CategoriesDao.findById(id);
+    const { params, query } = req;
+    return CategoriesDao.findOne({ params, query } );
   }
 
   async create(req, h) {
@@ -19,16 +20,13 @@ class CategoriesController {
   }
 
   async update(req, h) {
-    const {
-      params: { id },
-      payload,
-    } = req;
-    return CategoriesDao.update(id, payload);
+    const { params, query, payload } = req;
+    return CategoriesDao.update({ params, query }, payload);
   }
 
   async delete(req, h) {
-    const { id } = req.params;
-    await CategoriesDao.delete(id);
+    const { params, query } = req;
+    await CategoriesDao.delete({ params, query });
 
     return h.response().code(NO_CONTENT);
   }
