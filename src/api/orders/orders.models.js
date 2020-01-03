@@ -15,6 +15,12 @@ export default (sequelize, dataTypes) => {
       as: 'user',
       foreignKey: 'user_id',
     });
+
+    models.Order.hasMany(models.ProductOrder, {
+      as: 'orders',
+      foreignKey: 'order_id',
+    });
   };
+
   return Order;
 };

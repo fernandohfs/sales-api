@@ -17,6 +17,11 @@ export default (sequelize, dataTypes) => {
       as: 'category',
       foreignKey: 'category_id',
     });
+
+    models.Product.hasMany(models.ProductOrder, {
+      as: 'products',
+      foreignKey: 'product_id',
+    });
   };
 
   return Product;
