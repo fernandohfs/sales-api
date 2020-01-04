@@ -30,10 +30,13 @@ class ProductsDao {
   }
 
   async detail(id, categoryId) {
-    const product = await this.model.findOne({
-      where: { id, category_id: categoryId },
-      ...this.props,
-    });
+    let where = { id };
+
+    if (categoryId) {
+      where = { ...where, category_id: categoryId };
+    }
+
+    const product = await this.model.findOne({ where, ...this.props });
 
     if (!product) {
       throw Boom.notFound('Product not found');
