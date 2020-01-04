@@ -17,7 +17,7 @@ export default (sequelize, dataTypes) => {
     });
 
     models.Order.hasMany(models.ProductOrder, {
-      as: 'orders',
+      as: 'product_order',
       foreignKey: 'order_id',
     });
   };

@@ -7,8 +7,8 @@ class OrdersController {
   }
 
   async detail(req, h) {
-    const { id } = req.params;
-    return OrdersDao.findById(id);
+    const { orderId } = req.params;
+    return OrdersDao.findById(orderId);
   }
 
   async create(req, h) {
