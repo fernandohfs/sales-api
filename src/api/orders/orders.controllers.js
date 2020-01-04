@@ -14,9 +14,9 @@ class OrdersController {
   async create(req, h) {
     const { userId } = req.params;
 
-    const { id } = await OrdersDao.create(userId);
+    const { id, user_id } = await OrdersDao.create(userId);
 
-    return h.response(id).code(CREATED);
+    return h.response({ id, user_id }).code(CREATED);
   }
 
   async update(req, h) {
