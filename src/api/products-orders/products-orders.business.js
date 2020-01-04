@@ -12,7 +12,18 @@ class ProductsOrdersBusiness {
           `Product ID: ${p.id} has no quantity available. Please, check available quantity and try again.`
         );
       }
+
+      /**
+       * Update product quantity
+       */
+      const newQuantity = product.quantity - p.quantity;
+
+      await this._updateProductQuantity(newQuantity, p.id);
     }
+  }
+
+  async _updateProductQuantity(newQuantity, productId) {
+    await ProductsDao.update({ quantity: newQuantity }, productId, null);
   }
 }
 
