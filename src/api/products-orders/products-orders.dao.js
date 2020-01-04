@@ -19,11 +19,6 @@ class ProductsOrdersDao {
     }
 
     return results;
-    // const result = products.map(({ id, quantity }) => {
-    //   return this.model.create({ product_id: id, order_id: orderId, quantity });
-    // });
-
-    // return result;
   }
 }
 
