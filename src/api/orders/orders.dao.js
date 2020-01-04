@@ -48,11 +48,13 @@ class OrdersDao {
 
   async update(id, data) {
     const order = await this.findById(id);
+
     return order.update(data);
   }
 
   async destroy(id) {
     const order = await this.findById(id);
+
     return order.destroy();
   }
 }

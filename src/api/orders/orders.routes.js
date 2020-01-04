@@ -43,4 +43,17 @@ export default [
       },
     },
   },
+  {
+    method: 'DELETE',
+    path: `${basePath}/{orderId}`,
+    handler: OrdersController.destroy,
+    config: {
+      description: 'Delete an Order',
+      notes: 'Delete an order by the id passed in the path',
+      tags: ['api', 'orders'],
+      validate: {
+        params: Schemas.params,
+      },
+    },
+  },
 ];

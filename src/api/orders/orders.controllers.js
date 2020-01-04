@@ -28,8 +28,8 @@ class OrdersController {
   }
 
   async destroy(req, h) {
-    const { id } = req.params;
-    await OrdersDao.destroy(id);
+    const { orderId } = req.params;
+    await OrdersDao.destroy(orderId);
 
     return h.response().code(NO_CONTENT);
   }
