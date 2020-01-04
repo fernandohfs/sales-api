@@ -1,5 +1,4 @@
 import UsersController from './users.controllers';
-import OrdersController from '../orders/orders.controllers';
 import * as Schemas from './users.schemas';
 
 const basePath = '/users';
@@ -109,37 +108,6 @@ export default [
       validate: {
         params: Schemas.params,
       },
-    },
-  },
-  // ORDER's routes
-  {
-    method: 'POST',
-    path: `${basePath}/{userId}/orders`,
-    handler: OrdersController.create,
-    config: {
-      description: 'Post Order',
-      notes: 'Create a order with user id in request params',
-      tags: ['api', 'orders'],
-    },
-  },
-  {
-    method: 'GET',
-    path: `${basePath}/{userId}/orders`,
-    handler: OrdersController.list,
-    config: {
-      description: 'Get Orders',
-      notes: 'Returns a list orders',
-      tags: ['api', 'orders'],
-    },
-  },
-  {
-    method: 'GET',
-    path: `${basePath}/{userId}/orders/{orderId}`,
-    handler: OrdersController.detail,
-    config: {
-      description: 'Get Order',
-      notes: 'Returns an order by the id passed in the path',
-      tags: ['api', 'orders'],
     },
   },
 ];

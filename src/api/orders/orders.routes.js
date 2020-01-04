@@ -1,76 +1,42 @@
 import OrdersController from './orders.controllers';
 import * as Schemas from './orders.schemas';
 
-const basePath = '/orders';
+const basePath = '/users/{userId}/orders';
 
 export default [
   {
-    method: 'GET',
-    path: basePath,
-    handler: OrdersController.list,
-    config: {
-      description: 'Get Orders',
-      notes: 'Retruns a list orders',
-      tags: ['api', 'orders']
-    },
-  },
-  {
-    method: 'GET',
-    path: `${basePath}/{id}`,
-    handler: OrdersController.detail,
-    config: {
-      description: 'Get Order',
-      notes: 'Returns a order by the id passed in the path',
-      tags: ['api', 'orders'],
-      validate: {
-        params: Schemas.params,
-      },
-    },
-  },
-  {
     method: 'POST',
-    path: basePath,
+    path: `${basePath}`,
     handler: OrdersController.create,
     config: {
       description: 'Post Order',
-      notes: 'Create a order with data in request body',
+      notes: 'Create a order with user id in request params',
       tags: ['api', 'orders'],
-      plugins: {
-        'hapi-swagger': {
-          payloadType: 'form'
-        },
-      },
       validate: {
-        payload: Schemas.payload,
+        params: Schemas.userId,
       },
     },
   },
   {
-    method: 'PUT',
-    path: `${basePath}/{id}`,
-    handler: OrdersController.update,
+    method: 'GET',
+    path: `${basePath}`,
+    handler: OrdersController.list,
     config: {
-      description: 'Put Order',
-      notes: 'Update a order with data in request body by the id passed in the path',
+      description: 'Get Orders',
+      notes: 'Returns a list orders',
       tags: ['api', 'orders'],
-      plugins: {
-        'hapi-swagger': {
-          payloadType: 'form'
-        },
-      },
       validate: {
-        params: Schemas.params,
-        payload: Schemas.payload,
+        params: Schemas.userId,
       },
     },
   },
   {
-    method: 'DELETE',
-    path: `${basePath}/{id}`,
-    handler: OrdersController.destroy,
+    method: 'GET',
+    path: `${basePath}/{orderId}`,
+    handler: OrdersController.detail,
     config: {
-      description: 'delete Order',
-      notes: 'Delete a order by the id passed in the path',
+      description: 'Get Order',
+      notes: 'Returns an order by the id passed in the path',
       tags: ['api', 'orders'],
       validate: {
         params: Schemas.params,
