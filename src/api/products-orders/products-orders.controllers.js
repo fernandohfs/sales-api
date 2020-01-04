@@ -11,7 +11,7 @@ class ProductsOrdersController {
     /**
      * Checks if product is available
      */
-    await ProductsOrdersBusiness.checkProductAvailability(payload);
+    await ProductsOrdersBusiness.checkProductAvailability(payload, orderId);
 
     const productsOrder = await ProductsOrdersDao.create(payload, orderId);
 

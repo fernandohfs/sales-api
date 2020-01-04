@@ -1,9 +1,10 @@
 import Boom from '@hapi/boom';
 
 import ProductsDao from '../products/products.dao';
+import OrdersDao from '../orders/orders.dao';
 
 class ProductsOrdersBusiness {
-  async checkProductAvailability({ products }) {
+  async checkProductAvailability({ products }, orderId) {
     for (const p of products) {
       const product = await ProductsDao.detail(p.id, null);
 
@@ -19,11 +20,22 @@ class ProductsOrdersBusiness {
       const newQuantity = product.quantity - p.quantity;
 
       await this._updateProductQuantity(newQuantity, p.id);
+
+      /**
+       * Update order total
+       */
+      const total = product.price * p.quantity;
+
+      await this._updateOrderTotal(orderId, total);
     }
   }
 
   async _updateProductQuantity(newQuantity, productId) {
     await ProductsDao.update({ quantity: newQuantity }, productId, null);
+  }
+
+  async _updateOrderTotal(orderId, total) {
+    await OrdersDao.update(orderId, { total });
   }
 }
 
