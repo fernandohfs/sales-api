@@ -5,12 +5,25 @@ class ProductsOrdersDao {
     this.model = instances.getModel('ProductOrder');
   }
 
-  create({ products }, orderId) {
-    const result = products.map(({ id, quantity }) => {
-      return this.model.create({ product_id: id, order_id: orderId, quantity });
-    });
+  async create({ products }, orderId) {
+    const results = [];
 
-    return result;
+    for (const product of products) {
+      const result = await this.model.create({
+        product_id: product.id,
+        order_id: orderId,
+        quantity: product.quantity,
+      });
+
+      results.push(result);
+    }
+
+    return results;
+    // const result = products.map(({ id, quantity }) => {
+    //   return this.model.create({ product_id: id, order_id: orderId, quantity });
+    // });
+
+    // return result;
   }
 }
 
