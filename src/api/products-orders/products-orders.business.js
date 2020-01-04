@@ -3,7 +3,7 @@ import Boom from '@hapi/boom';
 import ProductsDao from '../products/products.dao';
 
 class ProductsOrdersBusiness {
-  async checkProductAvailabilty({ products }) {
+  async checkProductAvailability({ products }) {
     for (const p of products) {
       const product = await ProductsDao.detail(p.id, null);
 
