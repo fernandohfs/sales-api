@@ -18,4 +18,17 @@ export default [
       },
     },
   },
+  {
+    method: 'PUT',
+    path: `${basePath}/{productId}`,
+    handler: ProductsOrdersController.update,
+    config: {
+      description: 'Put Products Order',
+      notes: 'Update a products order',
+      tags: ['api', 'orders'],
+      validate: {
+        payload: Schemas.update,
+      },
+    },
+  },
 ];

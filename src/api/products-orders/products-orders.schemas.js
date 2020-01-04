@@ -12,3 +12,7 @@ export const payload = Joi.object({
     })
   ),
 });
+
+export const update = Joi.object({
+  quantity: Joi.number().required(),
+});

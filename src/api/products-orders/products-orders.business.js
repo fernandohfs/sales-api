@@ -4,7 +4,7 @@ import ProductsDao from '../products/products.dao';
 import OrdersDao from '../orders/orders.dao';
 
 class ProductsOrdersBusiness {
-  async handleProduct({ products }, orderId) {
+  async handleProduct(products, orderId) {
     for (const p of products) {
       const product = await ProductsDao.detail(p.id, null);
 

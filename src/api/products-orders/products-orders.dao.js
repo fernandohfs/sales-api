@@ -1,4 +1,5 @@
 import { instances } from 'hapi-sequelizejs';
+import Boom from '@hapi/boom';
 
 class ProductsOrdersDao {
   constructor() {
@@ -19,6 +20,18 @@ class ProductsOrdersDao {
     }
 
     return results;
+  }
+
+  async update(data, orderId, productId) {
+    const productOrder = await this.model.findOne({
+      where: { order_id: orderId, product_id: productId },
+    });
+
+    if (!productOrder) {
+      throw Boom.notFound('Product Order not found');
+    }
+
+    return productOrder.update(data);
   }
 }
 
