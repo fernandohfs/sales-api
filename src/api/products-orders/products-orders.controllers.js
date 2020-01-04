@@ -9,9 +9,9 @@ class ProductsOrdersController {
     const { payload } = req;
 
     /**
-     * Checks if product is available
+     * Execute handle product function
      */
-    await ProductsOrdersBusiness.checkProductAvailability(payload, orderId);
+    await ProductsOrdersBusiness.handleProduct(payload, orderId);
 
     const productsOrder = await ProductsOrdersDao.create(payload, orderId);
 
