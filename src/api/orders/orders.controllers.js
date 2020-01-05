@@ -28,14 +28,14 @@ class OrdersController {
     let { params: { userId, orderId } } = req;
     let params = { user_id: userId, id: orderId };
 
-    return OrdersDao.update({ params, query: {} }, payload);
+    return OrdersDao.update({ params }, payload);
   }
 
   async destroy(req, h) {
     let { params: { userId, orderId } } = req;
     let params = { user_id: userId, id: orderId };
 
-    await OrdersDao.destroy({ params, query: {} });
+    await OrdersDao.destroy({ params });
 
     return h.response().code(NO_CONTENT);
   }

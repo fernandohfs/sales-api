@@ -1,4 +1,5 @@
 import * as Joi from '@hapi/joi';
+import DocsUtils from '../utils/docs.utils';
 
 export const params = Joi.object({
   categoryId: Joi.number().required(),
@@ -21,4 +22,14 @@ export const update = Joi.object({
   description: Joi.string().min(3),
   quantity: Joi.number(),
   price: Joi.number(),
+});
+
+export const queryList = Joi.object(
+    DocsUtils.builderQueryParams([
+        'id', 'description', 'quantity', 'price'
+    ])
+);
+
+export const queryDetail = Joi.object({
+    fields: Joi.string().min(1)
 });

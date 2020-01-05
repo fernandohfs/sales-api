@@ -12,6 +12,11 @@ export default [
       description: 'Post Order',
       notes: 'Create a order with user id in request params',
       tags: ['api', 'orders'],
+      plugins: {
+        'hapi-swagger': {
+          payloadType: 'form',
+        },
+      },
       validate: {
         params: Schemas.userId,
       },
@@ -27,6 +32,7 @@ export default [
       tags: ['api', 'orders'],
       validate: {
         params: Schemas.userId,
+        query: Schemas.queryList
       },
     },
   },
@@ -40,6 +46,7 @@ export default [
       tags: ['api', 'orders'],
       validate: {
         params: Schemas.params,
+        query: Schemas.queryDetail
       },
     },
   },

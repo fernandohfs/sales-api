@@ -36,16 +36,16 @@ class UsersBusiness {
         return UsersDao.create(payload);
     }
 
-    async update({ params, query, payload, headers }) {
+    async update({ params, payload, headers }) {
         await this._checkPermissionToHandlerOrViewOtherUser(params.id, headers);
         await this._checkPermissionSetType(payload, headers);
 
-        return UsersDao.update({ params, query }, payload);
+        return UsersDao.update({ params }, payload);
     }
 
-    async delete({ params, query, headers}) {
+    async delete({ params, headers}) {
         await this._checkPermissionToHandlerOrViewOtherUser(params.id, headers);
-        return UsersDao.delete({ params, query });
+        return UsersDao.delete({ params });
     }
 
     async _checkPermissionSetType(payload, headers) {

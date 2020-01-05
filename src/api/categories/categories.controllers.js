@@ -20,13 +20,13 @@ class CategoriesController {
   }
 
   async update(req, h) {
-    const { params, query, payload } = req;
-    return CategoriesDao.update({ params, query }, payload);
+    const { params, payload } = req;
+    return CategoriesDao.update({ params }, payload);
   }
 
   async delete(req, h) {
-    const { params, query } = req;
-    await CategoriesDao.delete({ params, query });
+    const { params } = req;
+    await CategoriesDao.delete({ params });
 
     return h.response().code(NO_CONTENT);
   }

@@ -33,6 +33,7 @@ export default [
       tags: ['api', 'products'],
       validate: {
         params: Schemas.params,
+        query: Schemas.queryList
       },
     },
   },
@@ -46,6 +47,7 @@ export default [
       tags: ['api', 'products'],
       validate: {
         params: Schemas.detail,
+        query: Schemas.queryDetail
       },
     },
   },

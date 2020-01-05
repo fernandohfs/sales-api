@@ -45,7 +45,7 @@ class ProductsControllers {
         quantity,
         price,
         category 
-    } = await ProductsDao.update(payload, { params, query: {} });
+    } = await ProductsDao.update(payload, { params });
 
     return h.response({ id, description, quantity, price, category });
   }
@@ -54,7 +54,7 @@ class ProductsControllers {
     let { params: { id, categoryId } } = req;
     let params = { id, category_id: categoryId };
 
-    await ProductsDao.destroy({ params, query: {} });
+    await ProductsDao.destroy({ params });
 
     return h.response().code(NO_CONTENT);
   }

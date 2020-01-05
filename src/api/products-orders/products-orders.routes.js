@@ -12,6 +12,11 @@ export default [
       description: 'Post Products Order',
       notes: 'Integrate products to an order',
       tags: ['api', 'orders'],
+      plugins: {
+        'hapi-swagger': {
+          payloadType: 'form',
+        },
+      },
       validate: {
         params: Schemas.params,
         payload: Schemas.payload,
@@ -26,6 +31,11 @@ export default [
       description: 'Put Products Order',
       notes: 'Update a products order',
       tags: ['api', 'orders'],
+      plugins: {
+        'hapi-swagger': {
+          payloadType: 'form',
+        },
+      },
       validate: {
         params: Schemas.params2,
         payload: Schemas.update,
