@@ -41,7 +41,7 @@ class OrdersDao {
   }
 
   async update(options, data) {
-    const order = await this.findById(options);
+    const order = await this.findOne(options);
 
     return order.update(data);
   }

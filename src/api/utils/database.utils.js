@@ -64,8 +64,9 @@ class DatabaseUtils {
         let props = {};
         
         if ('props' in options ) {
+            props = { ...options.props };
+
             if (('attributes' in queryOptions) && ('attributes' in options.props)) {
-                props = { ...options.props };
                 props.attributes =  queryOptions.attributes;
             }
 
@@ -79,6 +80,8 @@ class DatabaseUtils {
         let { params, query } = options;
         let queryOptions = {};
         let where = {};
+
+        query = query || {};
         
         for (let filter in query) {
             if (filter === 'fields') {

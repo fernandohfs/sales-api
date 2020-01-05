@@ -6,6 +6,12 @@ class ProductsOrdersDao {
     this.model = instances.getModel('ProductOrder');
   }
 
+  async findOne(orderId, productId) {
+    return this.model.findOne({
+        where: { order_id: orderId, product_id: productId },
+      });
+  }
+
   async create({ products }, orderId) {
     const results = [];
 
@@ -23,9 +29,7 @@ class ProductsOrdersDao {
   }
 
   async update(data, orderId, productId) {
-    const productOrder = await this.model.findOne({
-      where: { order_id: orderId, product_id: productId },
-    });
+    const productOrder = await this.findOne(orderId, productId);
 
     if (!productOrder) {
       throw Boom.notFound('Product Order not found');

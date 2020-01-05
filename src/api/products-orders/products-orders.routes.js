@@ -27,7 +27,21 @@ export default [
       notes: 'Update a products order',
       tags: ['api', 'orders'],
       validate: {
+        params: Schemas.params2,
         payload: Schemas.update,
+      },
+    },
+  },
+  {
+    method: 'DELETE',
+    path: `${basePath}/{productId}`,
+    handler: ProductsOrdersController.delete,
+    config: {
+      description: 'Delete Products Order',
+      notes: 'Delete a products order',
+      tags: ['api', 'orders'],
+      validate: {
+       params: Schemas.params2
       },
     },
   },
