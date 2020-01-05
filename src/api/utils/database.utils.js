@@ -13,9 +13,8 @@ class DatabaseUtils {
     }
 
     async findAll(model, options) {
-        const { params, query } = options;
-        const queryOptions = this._builderQueryOptions(params, query);
-        const paginate = this._paginate(query);
+        let queryOptions = this._builderQueryOptions(options);
+        let paginate = this._paginate(options.query);
     
         try {
             const records = await model.findAll({ ...queryOptions, ...paginate });
@@ -27,8 +26,7 @@ class DatabaseUtils {
     }
 
     async findOne(model, options) {
-        const { params, query } = options;
-        const queryOptions = this._builderQueryOptions(params, query);
+        let queryOptions = this._builderQueryOptions(options);
         let object = null;
 
         try {
@@ -61,8 +59,24 @@ class DatabaseUtils {
             this._customMensagemError(error);
         }
     }
+
+    _includeProps(queryOptions, options) {
+        let props = {};
+        
+        if ('props' in options ) {
+            if (('attributes' in queryOptions) && ('attributes' in options.props)) {
+                props = { ...options.props };
+                props.attributes =  queryOptions.attributes;
+            }
+
+            return { ...queryOptions, ...props };
+        }
+
+        return queryOptions 
+    }
     
-    _builderQueryOptions(params, query) {
+    _builderQueryOptions(options) {
+        let { params, query } = options;
         let queryOptions = {};
         let where = {};
         
@@ -79,6 +93,7 @@ class DatabaseUtils {
         }
         
         where = { ...where, ...params };
+        queryOptions = this._includeProps(queryOptions, options);
     
         return { ...queryOptions, where };
     }

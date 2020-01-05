@@ -24,54 +24,38 @@ class ProductsControllers {
   }
 
   async list(req, h) {
-    const { categoryId } = req.params;
-    const { description } = req.query;
+    let { params: { categoryId }, query } = req;
+    let params = { category_id: categoryId };
 
-    let where = {
-      category_id: categoryId,
-    };
-
-    if (description) {
-      where = {
-        ...where,
-        description: {
-          [Op.substring]: description,
-        },
-      };
-    }
-
-    const products = await ProductsDao.list(where);
-
-    return h.response(products);
+    return ProductsDao.list({ params , query });
   }
 
   async detail(req, h) {
-    const { id, categoryId } = req.params;
+    let { params: { id, categoryId }, query } = req;
+    let params = { id, category_id: categoryId };
 
-    const product = await ProductsDao.detail(id, categoryId);
-
-    return h.response(product);
+    return ProductsDao.detail({ params , query });
   }
 
   async update(req, h) {
-    const {
-      params: { id, categoryId },
-      payload,
-    } = req;
+    let { params: { id, categoryId }, payload } = req;
+    let params = { id, category_id: categoryId };
 
-    const { description, quantity, price, category } = await ProductsDao.update(
-      payload,
-      id,
-      categoryId
-    );
+    const {
+        description, 
+        quantity,
+        price,
+        category 
+    } = await ProductsDao.update(payload, { params, query: {} });
 
     return h.response({ id, description, quantity, price, category });
   }
 
   async destroy(req, h) {
-    const { id, categoryId } = req.params;
+    let { params: { id, categoryId } } = req;
+    let params = { id, category_id: categoryId };
 
-    await ProductsDao.destroy(id, categoryId);
+    await ProductsDao.destroy({ params, query: {} });
 
     return h.response().code(NO_CONTENT);
   }
