@@ -1,5 +1,6 @@
 import CategoriesController from './categories.controllers';
 import * as Schemas from './categories.schemas';
+import { failAction } from '../utils/error.utils';
 
 const basePath = '/categories';
 
@@ -14,6 +15,7 @@ export default [
       tags: ['api', 'categories'],
       validate: {
         query: Schemas.queryList,
+        failAction
       },
     },
   },
@@ -27,7 +29,8 @@ export default [
       tags: ['api', 'categories'],
       validate: {
         params: Schemas.params,
-        query: Schemas.queryDetail
+        query: Schemas.queryDetail,
+        failAction
       },
     },
   },
@@ -46,6 +49,7 @@ export default [
       },
       validate: {
         payload: Schemas.payload,
+        failAction
       },
     },
   },
@@ -66,6 +70,7 @@ export default [
       validate: {
         params: Schemas.params,
         payload: Schemas.payload,
+        failAction
       },
     },
   },
@@ -79,6 +84,7 @@ export default [
       tags: ['api', 'categories'],
       validate: {
         params: Schemas.params,
+        failAction
       },
     },
   },

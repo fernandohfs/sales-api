@@ -1,5 +1,6 @@
 import UsersController from './users.controllers';
 import * as Schemas from './users.schemas';
+import { failAction } from '../utils/error.utils';
 
 const basePath = '/users';
 
@@ -17,6 +18,7 @@ export default [
       },
       validate: {
         query: Schemas.queryList,
+        failAction
       },
     },
   },
@@ -31,6 +33,7 @@ export default [
       validate: {
         params: Schemas.params,
         query: Schemas.queryDetail,
+        failAction
       },
     },
   },
@@ -51,6 +54,7 @@ export default [
       },
       validate: {
         payload: Schemas.login,
+        failAction
       },
     },
   },
@@ -71,9 +75,7 @@ export default [
       },
       validate: {
         payload: Schemas.payload,
-        failAction(request, h, err) {
-          return err;
-        },
+        failAction        
       },
     },
   },
@@ -94,6 +96,7 @@ export default [
       validate: {
         params: Schemas.params,
         payload: Schemas.payload,
+        failAction
       },
     },
   },
@@ -107,6 +110,7 @@ export default [
       tags: ['api', 'users'],
       validate: {
         params: Schemas.params,
+        failAction
       },
     },
   },
