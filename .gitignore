@@ -2,3 +2,4 @@
 .env
 .vscode
 jsconfig.json
+/test/.env.test

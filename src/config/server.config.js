@@ -13,11 +13,11 @@ import Env from './environment.config';
 
 class Server {
   constructor() {
+    let debug = (Env.ENV === 'test') ? {} : { request: ['error'] };
+
     this.server = Hapi.server({
       port: Env.PORT || 3000,
-      debug: {
-        request: ['error'],
-      },
+      debug
     });
   }
 
