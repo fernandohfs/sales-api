@@ -3,12 +3,17 @@ import OrdersDao from './orders.dao';
 
 class OrdersController {
   async list(req, h) {
-    return OrdersDao.findAll();
+    let { params: { userId }, query } = req;
+    let params = { user_id: userId };
+
+    return OrdersDao.findAll({ params, query });
   }
 
   async detail(req, h) {
-    const { orderId } = req.params;
-    return OrdersDao.findById(orderId);
+    let { params: { userId, orderId }, query } = req;
+    let params = { user_id: userId, id: orderId };
+
+    return OrdersDao.findOne({ params , query });
   }
 
   async create(req, h) {
@@ -20,16 +25,17 @@ class OrdersController {
   }
 
   async update(req, h) {
-    const {
-      params: { id },
-      payload,
-    } = req;
-    return OrdersDao.update(id, payload);
+    let { params: { userId, orderId } } = req;
+    let params = { user_id: userId, id: orderId };
+
+    return OrdersDao.update({ params, query: {} }, payload);
   }
 
   async destroy(req, h) {
-    const { orderId } = req.params;
-    await OrdersDao.destroy(orderId);
+    let { params: { userId, orderId } } = req;
+    let params = { user_id: userId, id: orderId };
+
+    await OrdersDao.destroy({ params, query: {} });
 
     return h.response().code(NO_CONTENT);
   }

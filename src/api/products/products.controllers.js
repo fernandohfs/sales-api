@@ -1,5 +1,4 @@
 import { CREATED, NO_CONTENT } from 'http-status';
-import { Op } from 'sequelize';
 
 import ProductsDao from './products.dao';
 

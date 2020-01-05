@@ -1,5 +1,4 @@
 import { instances } from 'hapi-sequelizejs';
-import Boom from '@hapi/boom';
 import DatabaseUtils from '../utils/database.utils';
 
 class ProductsDao {
