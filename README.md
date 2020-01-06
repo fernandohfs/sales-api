@@ -25,15 +25,15 @@ Usuários demo:
 
 ```
 tipo: Cliente
-email: joao@gmail.com 
-senha: 123456
-```
-```
-tipo: Operador
-email: admin@gmail.com 
+email: joao@gmail.com
 senha: 123456
 ```
 
+```
+tipo: Operador
+email: admin@gmail.com
+senha: 123456
+```
 
 ## Instalação
 
@@ -59,7 +59,7 @@ $ yarn
 
 Crie um arquivo na pasta raiz do projeto chamado `.env`, copie os dados de exemplo contidos no arquivo `.env.example` e preencha com as informações corretas, como, por exemplo, nome, host, username do banco de dados, etc.
 
-## Documentação 
+## Documentação
 
 Para saber sobre os recursos e rotas disponiveis é quais parâmetros e dados passar, você pode olhar na documentação da API, é só ir no endereço [http://localhost:3333/documentation](http://localhost:3333/documentation)
 
@@ -83,17 +83,15 @@ $ yarn dev
 
 Após isso, a API estará rodando no endereço [http://localhost:3333](http://localhost:3333).
 
-
 ## Level Up
 
-Foi criado dois tipos de usuários no sistema (1 - Cliente, 2 - Operador), com o propósito de restringir que o usuário do tipo cliente cadastre produtos e coisas do tipo, sendo restrito somente ao operador, mas quando se instala e configura a API, somente é possivel criar um usuário do tipo cliente, porque só um usuário do tipo operador pode criar outro usuário operador, então cadastre um usuário comum, e com o script criado pode elevar um usuário como operador, para isso use o comando abaixo na pasta raiz do projeto: 
+Foi criado dois tipos de usuários no sistema (1 - Cliente, 2 - Operador), com o propósito de restringir que o usuário do tipo cliente cadastre produtos e coisas do tipo, sendo restrito somente ao operador, mas quando se instala e configura a API, somente é possivel criar um usuário do tipo cliente, porque só um usuário do tipo operador pode criar outro usuário operador, então cadastre um usuário comum, e com o script criado pode elevar um usuário como operador, para isso use o comando abaixo na pasta raiz do projeto:
 
 ```
 $ yarn levelup
 ```
 
-***Observações:*** Se já tiver um usuário operador, pode usar ele pada cadastrar outros usuários operadores na rota de cadastro de usuário, mas para isso será necessário passar o token de login.
-
+**_Observações:_** Se já tiver um usuário operador, pode usar ele pada cadastrar outros usuários operadores na rota de cadastro de usuário, mas para isso será necessário passar o token de login.
 
 ## Filtros
 
@@ -106,6 +104,7 @@ Nas rotas de busca "GET", foram criados diversos parâmetros para buscar o conte
 ```
 
 ##### Filtrar atributos do objeto
+
 ```
 ?fields=id,name
 ```
@@ -121,13 +120,13 @@ Em conjunto: ?sort=id-,name
 ##### Filtrar campos do objeto
 
 ```
-_contians: ?name_contains=Fulano 
+_contains: ?name_contains=Fulano
 _in: ?id_in=1,2,3
 ```
 
 ## Teste
 
-Para rodar os testes primeiramente certifique se o ambiente de banco de dados foi criado, crie o banco de teste e depois configure o arquivo .env com as configurações de acesso ao banco, então use o comando abaixo para criar a estrutura do banco:  
+Para rodar os testes primeiramente certifique se o ambiente de banco de dados foi criado, crie o banco de teste e depois configure o arquivo .env com as configurações de acesso ao banco, então use o comando abaixo para criar a estrutura do banco:
 
 ```
 $ yarn sequelize db:migrate --env test
@@ -135,7 +134,7 @@ $ yarn sequelize db:migrate --env test
 
 Agora crie um arquivo .env.test, caminho (pasta raiz)/test/, nesse caminho vai ter um arquivo .env.test.example, preencha todas as configurações que tiver nele como base para o arquivo .env.test.
 
-Por último, execute o comando abaixo na pasta raiz do projeto: 
+Por último, execute o comando abaixo na pasta raiz do projeto:
 
 ```
 $ yarn test
