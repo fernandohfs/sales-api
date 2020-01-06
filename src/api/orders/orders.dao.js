@@ -1,4 +1,5 @@
 import { instances } from 'hapi-sequelizejs';
+import UsersDao from '../users/users.dao';
 import DatabaseUtils from '../utils/database.utils';
 
 class OrdersDao {
@@ -37,6 +38,7 @@ class OrdersDao {
   }
 
   async create(userId) {
+    await UsersDao.findOne({ params: { id: userId } });
     return this.model.create({ user_id: userId });
   }
 
