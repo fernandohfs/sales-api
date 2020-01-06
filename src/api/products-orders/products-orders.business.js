@@ -6,6 +6,8 @@ import OrdersDao from '../orders/orders.dao';
 
 class ProductsOrdersBusiness {
   async handleProduct(products, orderId, isCreate=false) {
+    await OrdersDao.findOne({ params: { id: orderId } });
+
     for (const p of products) {
       let isCheck = true;
       let totalUpdate = null;
